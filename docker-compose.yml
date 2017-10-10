@@ -9,45 +9,49 @@ services:
       - /tmp/transmission/data:/data
       - /tmp/transmission/downloads:/downloads
     privileged: true
+    expose:
+      - "9091"
     ports:
-      - "9091:9091"
+      - "10000:9091"
   jackett:
     image: "linuxserver/jackett:latest"
     volumes:
       - /tmp/jackett/config:/config
       - /tmp/jackett/downloads:/downloads
+    expose:
+      - "9117"
     ports:
-      - "9117:9117"
+      - "10001:9117"
   plexpy:
     image: "linuxserver/plexpy:latest"
-    network_mode: "host"
     volumes:
-      - /tmp/plexpy/logs:/logs
+      - /tmp/plex/config/Library/Application\ Support/Plex\ Media\ Server/Logs:/logs
       - /tmp/plex/config:/config
-#    ports:
-#      - "8181:8181"
+    ports:
+      - "10002:8181"
   sonarr:
     image: "linuxserver/sonarr:latest"
-    network_mode: "host"
     volumes:
       - /tmp/transmission/downloads:/downloads
       - /tmp/sonarr/config:/config
       - /tmp/media/tv:/tv
-#    ports:
-#      - "8989:8989"
+    ports:
+      - "10003:8989"
   couchpotato:
     image: "linuxserver/couchpotato:latest"
-    network_mode: "host"
     volumes:
       - /tmp/couch/config:/config
       - /tmp/transmission/downloads:/downloads
       - /tmp/media/movies:/movies
     ports:
-      - "5050:5050"
+      - "10004:5050"
   plex:
     image: "linuxserver/plex:latest"
-    network_mode: "host"
     volumes:
       - /tmp/plex/config:/config
       - /tmp/plex/transcode:/transcode
       - /tmp/media:/data
+    ports:
+      - "10005:32400"
+    expose:
+      - "32400"
