@@ -3,8 +3,8 @@ services:
   plexpy:
     image: "linuxserver/plexpy:latest"
     volumes:
-      - /tmp/plex/config/Library/Application\ Support/Plex\ Media\ Server/Logs:/logs
-      - /tmp/plex/config:/config
+      - /opt/plex/config/Library/Application\ Support/Plex\ Media\ Server/Logs:/logs
+      - /opt/plex/config:/config
     ports:
       - "10002:8181"
   plex:
@@ -12,9 +12,9 @@ services:
     env_file:
       - plex.env
     volumes:
-      - /tmp/plex/config:/config
-      - /tmp/plex/transcode:/transcode
-      - /tmp/media:/data
+      - /opt/plex/config:/config
+      - /opt/plex/transcode:/transcode
+      - /opt/plex/data:/data
     ports:
       - "10005:32400"
     expose:
