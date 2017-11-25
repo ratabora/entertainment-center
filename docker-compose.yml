@@ -47,6 +47,8 @@ services:
       - "10004:5050"
   plex:
     image: "linuxserver/plex:latest"
+    env_file:
+      - plex.env
     volumes:
       - /tmp/plex/config:/config
       - /tmp/plex/transcode:/transcode
