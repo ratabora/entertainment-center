@@ -1,27 +1,5 @@
 version: '3.3'
 services:
-  transmission:
-    image: "haugene/transmission-openvpn:latest"
-    env_file:
-      - transmission.env
-    volumes:
-      - /tmp/transmission/config:/config
-      - /tmp/transmission/data:/data
-      - /tmp/transmission/downloads:/downloads
-    privileged: true
-    expose:
-      - "9091"
-    ports:
-      - "10000:9091"
-  jackett:
-    image: "linuxserver/jackett:latest"
-    volumes:
-      - /tmp/jackett/config:/config
-      - /tmp/jackett/downloads:/downloads
-    expose:
-      - "9117"
-    ports:
-      - "10001:9117"
   plexpy:
     image: "linuxserver/plexpy:latest"
     volumes:
@@ -29,22 +7,6 @@ services:
       - /tmp/plex/config:/config
     ports:
       - "10002:8181"
-  sonarr:
-    image: "linuxserver/sonarr:latest"
-    volumes:
-      - /tmp/transmission/downloads:/downloads
-      - /tmp/sonarr/config:/config
-      - /tmp/media/tv:/tv
-    ports:
-      - "10003:8989"
-  couchpotato:
-    image: "linuxserver/couchpotato:latest"
-    volumes:
-      - /tmp/couch/config:/config
-      - /tmp/transmission/downloads:/downloads
-      - /tmp/media/movies:/movies
-    ports:
-      - "10004:5050"
   plex:
     image: "linuxserver/plex:latest"
     env_file:
