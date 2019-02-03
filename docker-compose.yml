@@ -8,7 +8,7 @@ services:
     ports:
       - "8181:8181"
   plex:
-    image: "linuxserver/plex:latest"
+    image: "plexinc/pms-docker:latest"
     restart: unless-stopped
     env_file:
       - plex.env
